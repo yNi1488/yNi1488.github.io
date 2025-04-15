@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win-Tech UA | Windows Technologies UA</title>
+    <style>
+        :root {
+            --primary-blue: #0057b7;
+            --secondary-yellow: #ffd700;
+            --white: #fff;
+            --gray: #f0f0f0;
+            --dark-gray: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: var(--gray);
+            color: var(--dark-gray);
+        }
+        header h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+        header p {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: var(--primary-blue);
+            padding: 15px;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 20px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: var(--secondary-yellow);
+        }
+        .container, .bio-section, .form-container, .install-section, .video-section, .blog-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--white);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .install-section h2, .bio-section h2, .form-container h2, .video-section h2, .blog-section h2 {
+            color: var(--primary-blue);
+            text-align: center;
+        }
+        .step {
+            display: none;
+            text-align: center;
+        }
+        .step.active {
+            display: block;
+        }
+        .btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: var(--secondary-yellow);
+            color: var(--dark-gray);
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+        }
+        .video-wrapper {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .video-wrapper iframe {
+            width: 30%;
+            height: 315px;
+            margin: 10px;
+        }
+        @media (max-width: 768px) {
+            .video-wrapper iframe {
+                width: 100%;
+            }
+        }
+        :root {
+            --primary-blue: #0057b7;
+            --secondary-yellow: #ffd700;
+            --white: #fff;
+            --gray: #f0f0f0;
+            --dark-gray: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: var(--gray);
+        }
+        nav {
+            background: var(--primary-blue);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: var(--white);
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .popup-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .popup-buttons button {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .popup-buttons button:hover {
+            background: var(--secondary-yellow);
+            color: var(--dark-gray);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .popup-content {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .popup-inner {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .popup-text {
+            flex: 1 1 300px;
+            text-align: left;
+        }
+        .popup-images {
+            flex: 1 1 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .popup-images img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+        .close:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <link rel="stylesheet" href="style.css">
+
+    <header class="image-header">
+        <img src="photos/banner-clean2.png" alt="WIN-TECH UA Banner" class="header-image" />
+        <div class="header-text">
+          <h1>WIN-TECH UA</h1>
+          <p>Windows Technologies UA</p>
+        </div>
+      </header>
+      
+<nav>
+    <a href="Head.html">Home</a>
+    <a href="album.html">Album</a>
+    <a href="#contact">Contact</a>
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+</nav>
+<div class="popup-buttons">
+
+    <!-- Popup 1 -->
+    <div class="popup-button-with-image">
+      <img src="photos/preview-ekran.png" alt="Ekran Preview" class="popup-preview-img">
+      <button class="open-popup" data-popup="popup1">SALAMANDER</button>
+    </div>
+  
+    <!-- Popup 2 -->
+    <div class="popup-button-with-image">
+      <img src="photos/preview-carpathian.png" alt="Carpathian Preview" class="popup-preview-img">
+      <button class="open-popup" data-popup="popup2">Carpathian Windows</button>
+    </div>
+  
+    <!-- Popup 3 -->
+    <div class="popup-button-with-image">
+      <img src="photos/preview-alfabud.png" alt="Alfabud Preview" class="popup-preview-img">
+      <button class="open-popup" data-popup="popup3">Reynaers Aluminum</button>
+    </div>
+  
+  </div>
+<div id="popup1" class="popup">
+    <button class="close-btn" onclick="closePopup('popup1')">X</button>
+    <div class="popup-content">
+        
+        <!-- Your provided image on the left -->
+        <div class="popup-image">
+            <img src="photos/small-image1.png" alt="Company Image">
+        </div>
+
+        <!-- Your exact provided text on the right -->
+        <div class="popup-text">
+            <h2>About Our Company</h2>
+            <p>
+                It was we who manufactured the first window in Ukraine from the SALAMANDER profile in 1999. Yes, we were the first company to offer Ukrainian consumers products from the German "Salamander" systems, and since then we have remained a constant partner of the "SIP" company in Ukraine and one of the largest processors of "Salamander" profile systems in the country. Back then, in 1999, we focused on quality and this was a qualitative start for further successful work and our rapid development.
+            </p>
+            <p>
+                In 2010, we successfully launched the Ukrainian-made EKRAN profile on the market. If you are looking for a national product of European quality, then the EKRAN profile system is just for you. These are high-quality and economical systems at a favorable price.
+            </p>
+
+            <!-- Sections with details -->
+            <h2>OUR RANGE</h2>
+
+            <div class="section">
+                <h3>SALAMANDER bluEvolution: 82</h3>
+                <ul>
+                    <li>• Number of internal profile chambers: 6</li>
+                    <li>• Profile installation width: 82 mm</li>
+                    <li>• Tightness: 3 EPDM seal contours</li>
+                    <li>• Heat transfer resistance coefficient: Uw = 1.07 m² • K/Wt</li>
+                    <li>• Wall thickness: 3 mm</li>
+                    <li>• Double-glazed window: energy-saving 48 mm</li>
+                    <li>• Sound insulation: up to 48 dB</li>
+                </ul>
+                <div class="section-image">
+                    <img src="photos/ekran1.jpg" alt="Salamander 82">
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>SALAMANDER bluEvolution: 73</h3>
+                <ul>
+                    <li>• Number of internal profile chambers: 5</li>
+                    <li>• Profile installation width: 73 mm</li>
+                    <li>• Tightness: 2 EPDM seal contours</li>
+                    <li>• Heat transfer resistance coefficient: Uw = 0.92 m² • K/BT</li>
+                    <li>• Wall thickness: 3 mm</li>
+                    <li>• Double-glazed window: energy-saving 44 mm</li>
+                    <li>• Sound insulation: up to 47 dB</li>
+                </ul>
+                <div class="section-image">
+                    <img src="photos/ekran2.jpg" alt="Salamander 73">
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>EKRAN maxima comfort</h3>
+                <ul>
+                    <li>• Number of internal profile chambers: 6</li>
+                    <li>• Profile installation width: 70 mm</li>
+                    <li>• Tightness: 2 EPDM seal contours</li>
+                    <li>• Heat transfer resistance coefficient: Uw = 0.91 m² • K/BT</li>
+                    <li>• Wall thickness: from 2.8 to 3 mm</li>
+                    <li>• Double-glazed window: energy-saving 32/42 mm</li>
+                    <li>• Sound insulation: up to 46 dB</li>
+                </ul>
+                <div class="section-image">
+                    <img src="photos/ekran3.jpg" alt="Ekran comfort">
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-text">
+                  <h2>Sliding Systems – Create More Space</h2>
+                  <p>
+                    Modern architecture is characterized by large glazed walls that provide a panoramic view and plenty of light.
+                    The company <strong>Salamander</strong> has introduced an innovative sliding system of parallel fixation —
+                    <strong>evolutionDrive Plus+</strong> — for windows and doors, which impresses with its convenience,
+                    compactness, ease of opening, and the optical effect of increasing space.
+                  </p>
+              
+                  <h3>SALAMANDER evolutionDrive Plus+</h3>
+                  <ul>
+                    <li>• Number of internal profile chambers: frames – 7, sashes – 5</li>
+                    <li>• Installation width: frames – 152 mm, sashes – 76 mm</li>
+                    <li>• Tightness: 2 EPDM sealing contours</li>
+                    <li>• Heat transfer resistance coefficient: Uw = 0.91 m² • K/W</li>
+                    <li>• Wall thickness: 3 mm</li>
+                    <li>• Double-glazed window: energy-saving 44 mm</li>
+                    <li>• Sound insulation: up to 44 dB</li>
+                    <li>• Fittings: WinkHaus duoPORT SA</li>
+                    <li>• Burglar resistance: protection class RC2</li>
+                    <li>• Frame design: straight</li>
+                    <li>• Sash design: straight</li>
+                    <li>• Bead design: straight</li>
+                  </ul>
+                </div>
+              
+                <div class="section-image">
+                  <img src="photos/salamander-evolutiondrive.jpg" alt="evolutionDrive Plus+">
+                </div>
+              </div>              
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<div id="popup2" class="popup">
+    
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup('popup2')">&times;</span>
+  <!-- Centered image before the first paragraph -->
+<div class="popup-top-image">
+    <img src="photos/carpathian-header.png" alt="Carpathian Header Image">
+  </div>
+  
+      <!-- Intro -->
+      <div class="popup-text">
+        <h2>Carpathian Windows</h2>
+        <p>
+          The history of the use of wood by man is as ancient as the history of mankind itself. Before starting the production of wooden windows, doors and sliding systems, we studied all aspects of the Carpathian methods of working with wood. With a deep understanding of the technology of manual processing, we chose the equipment that best reproduces the traditional approach.
+        </p>
+      </div>
+  
+      <!-- Full-width photo -->
+      <div class="popup-full-image">
+        <img src="photos/carpathian-full2.png" alt="Carpathian Woodworking">
+        <p><strong>Materials and technologies:</strong></p>
+      </div>
+  
+      <!-- Second block -->
+      <div class="popup-text">
+        <p>
+            Every wooden window and door has its own unique character and special personality from the moment of creation. Its features are determined by the type of wood from which the product is subsequently made (oak or pine).
+        </p>
+        <p>
+          On special order, we will offer you something truly unique — windows, doors, and other structures from valuable and rare wood species: meranti, eucalyptus, bintagor, sapele.
+        </p>
+        <p>
+          Three wood layers actually form a spliced and solid beam with a cross-section:
+        </p>
+        <ul>
+          <li>Three-layer 68×80 mm (max glazing width: 32 mm)</li>
+          <li>Three-layer 78×80 mm (max glazing width: 42 mm)</li>
+          <li>Four-layer 92×80 mm (max glazing width: 52 mm)</li>
+        </ul> <br>
+        
+        <p>
+          Using Eurobar, the company “Ekran-Viknosvit” manufactures eco-friendly products called “Carpathian Windows”: wooden windows, entrance doors, façade and sliding systems, and arched structures in a wide range of colors and various custom shapes.
+        </p>
+      </div>
+  
+      <!-- Assortment title -->
+      <div class="popup-text">
+        <h2>Our Assortment</h2>
+      </div>
+  
+      <!-- STANDARD-68 Block -->
+      <div class="section">
+        <div class="section-text">
+          <h3>System "STANDARD-68"</h3>
+          <ul>
+            <li>• Double-glazed window: 24/32 mm with low-emission glass</li>
+            <li>• Heat transfer coefficient: below 1.1 W/m²K</li>
+            <li><strong>Technical:</strong>
+              <ul>
+                <li>• Glued three-layer beam, 68×80 mm</li>
+                <li>• Two DEVENTER sealing contours + third bottom seal</li>
+                <li>• High-quality neutral silicone sealing</li>
+                <li>• Eco-friendly paintwork (ADLER, SIKKENS, 3 layers)</li>
+              </ul>
+            </li>
+            <li><strong>Fittings:</strong>
+              <ul>
+                <li>• Winkhaus, activPilot</li>
+                <li>• Anti-burglary handle: Norre</li>
+                <li>• Extra comfort functions available</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/standard-68.jpg" alt="STANDARD-68">
+        </div>
+      </div>
+  
+      <!-- TERMOPLUS-78 Block -->
+      <div class="section">
+        <div class="section-text">
+          <h3>System "TERMOPLUS-78"</h3>
+          <ul>
+            <li>• Double-glazed window: 36/42 mm — improved thermal performance</li>
+            <li>• Heat transfer coefficient: below 1.0 W/m²K</li>
+            <li><strong>Technical:</strong>
+              <ul>
+                <li>• Glued three-layer beam, 78×80 mm</li>
+                <li>• Two DEVENTER sealing contours + third bottom seal</li>
+                <li>• High-quality neutral silicone sealing</li>
+                <li>• Eco-friendly paints (ADLER, 3-layer coating)</li>
+              </ul>
+            </li>
+            <li><strong>Fittings:</strong>
+              <ul>
+                <li>• Winkhaus, activPilot</li>
+                <li>• Hoppe Secustik anti-burglary handle</li>
+                <li>• Extra comfort functions available</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/termoplus-78.jpg" alt="TERMOPLUS-78">
+        </div>
+      </div>
+      <!-- Wood-Aluminum Products Section -->
+<div class="section">
+    <div class="section-text">
+      <h3>Wood-Aluminum Products</h3>
+      <p>
+        The combination of simple materials — wood and aluminum — gives a fantastic result: an "eternal window" Outside, such a window has aluminum linings, and inside — a warm wooden surface.<br></br>
+      </p>
+      <p>
+        The company <strong>"Windows-Technologies UA"</strong> in cooperation with the company <strong>"EKRAN"</strong> masters the advanced technology of manufacturing wood-aluminum structures —
+        the "fusion" of wood with aluminum is perfect, which ensures quality for a long time. Aluminum "armor" guarantees that a wooden window
+        will faithfully serve you for at least 80 years.<br></br>
+      </p>
+      <p>
+        The pleasant functional characteristics of a wood-aluminum window are successfully complemented by its beautiful appearance from
+        the inside and outside: the design of the external aluminum linings is ideal for modern "hi-tech" exteriors; the traditional warmth
+        and elegance of wood will give comfort to any interior.
+      </p>
+    </div>
+    <div class="section-image">
+      <img src="photos/wood-aluminum-1.jpg" alt="Wood-Aluminum Structure">
+    </div>
+  </div>
+  
+  <!-- Type of overlays -->
+  <div class="section">
+    <div class="section-text">
+      <p><strong>Type of overlays</strong></p>
+      <h4>GEMINI Classic system</h4>
+      <p>
+        Classic shapes of aluminum profiles for people who are faithful to classical traditions in construction and design.
+      </p>
+    </div>
+    <div class="section-image">
+      <img src="photos/wood-aluminum-2.jpg" alt="GEMINI Classic Overlay">
+    </div>
+  </div>
+    </div>
+  </div>
+  
+  <div id="popup3" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup('popup3')">&times;</span>
+  
+      <!-- 📷 Header image -->
+      <div class="popup-top-image">
+        <img src="photos/alfabud.png" alt="Alfabud Header Image">
+      </div>
+  
+      <div class="popup-text">
+        <h2>Reynaers Aluminum</h2>
+        <p>
+          Today, Reynaers is engaged in the design, production and installation of aluminum facades, windows and doors, sliding systems,
+          office partitions, winter gardens, all types of ventilated facades, and frameless glazing.
+        </p>
+  
+        <p><strong>Innovative approach and unique architectural solutions for your home or business</strong></p>
+      </div>
+  
+      <!-- More photo -->
+      <div class="popup-full-image">
+        <img src="photos/alfabud-more.png" alt="Alfabud More Preview">
+      </div>
+  
+      <div class="popup-text">
+        <p>
+          New generations of aluminum systems combine the advantages of energy saving, reliability, durability, safety, and protection from noise and moisture.
+          It is also important to note their aesthetic qualities, which fit perfectly into modern interior design.
+        </p>
+      </div>
+  
+      <!-- ⭐ Section Title -->
+      <div class="popup-text">
+        <p style="text-align: center; font-weight: bold; font-size: 20px;">Our Assortment</p>
+        <h3>• Profile Systems</h3>
+      </div>
+  
+      <!-- 🔧 REYNAERS MasterLine 10-HI+ -->
+      <div class="section">
+        <div class="section-text">
+            <h4 class="text-blue">REYNAERS MasterLine 10-HI+</h4>
+          <ul class="custom-list">
+            <li>Double-glazed windows: 52/68 mm using tempered, low-emission and triplex glass</li>
+            <li>Max sash size: 1250×2800 mm</li>
+            <li>Thermal bridge thickness: 60 mm</li>
+            <li>Burglar resistance: RC 2 (ENV 1627–1630)</li>
+            <li>Polymer painting per RAL scale, decor options available</li>
+            <li>Accessories: Fapim Magicube 180</li>
+            <li>Extra comfort function support</li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/masterline10.jpg" alt="MasterLine 10-HI+">
+        </div>
+      </div>
+  
+      <!-- 🔧 REYNAERS MasterLine 8-HI -->
+      <div class="section">
+        <div class="section-text">
+            <h4 class="text-blue">REYNAERS MasterLine 8-HI</h4>
+          <ul class="custom-list">
+            <li>Double-glazed window: 48/52 mm using tempered, low-emission and triplex glass</li>
+            <li>Max sash size: 1250×2800 mm</li>
+            <li>Thermal bridge thickness: 40 mm</li>
+            <li>Burglar resistance: RC 2 (ENV 1627–1630)</li>
+            <li>Polymer painting per RAL scale, decor options available</li>
+            <li>Hardware: GU ALU-JET, Stac EvoSoft</li>
+            <li>Extra comfort function support</li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/masterline8.jpg" alt="MasterLine 8-HI">
+        </div>
+      </div>
+      <!-- 🚪 Sliding Systems -->
+      <div class="popup-text">
+        <h3>• Sliding Systems</h3>
+      </div>
+  
+      <!-- REYNAERS CP 155-LS -->
+      <div class="section">
+        <div class="section-text">
+            <h4 class="text-blue">REYNAERS CP 155-LS</h4>
+          <ul class="custom-list">
+            <li>Double glazing: 52 mm using tempered, low-emission and triplex glass</li>
+            <li>Max sash size: 2700×3500 mm</li>
+            <li>Thermal bridge: 27/20 mm</li>
+            <li>Burglar resistance: RC 2 (ENV 1627–1630)</li>
+            <li>Polymer painting per RAL scale, decor options available</li>
+            <li>Accessories: GU 934</li>
+            <li>Lift-sliding mechanism allows half-open positioning</li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/cp155.jpg" alt="REYNAERS CP 155-LS">
+        </div>
+      </div>
+  
+      <!-- REYNAERS MasterPatio -->
+      <div class="section">
+        <div class="section-text">
+            <h4 class="text-blue">REYNAERS MasterPatio</h4>
+          <ul class="custom-list">
+            <li>Double-glazed window: 52 mm using tempered, low-emission and triplex glass</li>
+            <li>Max sash size: 3000×3600 mm</li>
+            <li>Sash thermal bridge: 41 mm</li>
+            <li>Frame thermal bridge: 2×40 mm / 28 mm</li>
+            <li>Burglar resistance: RC 2 (ENV 1627–1630)</li>
+            <li>Polymer painting per RAL scale, decor options available</li>
+            <li>Accessories: Siegenia</li>
+            <li>Lift-sliding mechanism allows half-open positioning</li>
+          </ul>
+        </div>
+        <div class="section-image">
+          <img src="photos/masterpatio.jpg" alt="REYNAERS MasterPatio">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<script>
+    document.querySelectorAll('.open-popup').forEach(button => {
+        button.addEventListener('click', () => {
+            document.getElementById(button.dataset.popup).style.display = 'flex';
+        });
+    });
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
+</script>
+
+<div class="install-section">
+    <!-- Step 1 -->
+    <div id="step1" class="step active">
+        <h2>Where do you plan to install?</h2>
+        <button class="btn" onclick="nextStep(2, 'Apartment')">Apartment</button>
+        <button class="btn" onclick="nextStep(2, 'Private House')">Private House</button>
+        <button class="btn" onclick="nextStep(2, 'Commercial Building')">Commercial Building</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="step">
+        <h2>Select the type of structure</h2>
+        <button class="btn" onclick="nextStep(3, 'Windows')">Windows</button>
+        <button class="btn" onclick="nextStep(3, 'Doors')">Doors</button>
+        <button class="btn" onclick="nextStep(3, 'Sliding Systems')">Sliding Systems</button>
+        <button class="btn back-btn" onclick="goBack(1)">Back</button>
+    </div>
+
+    <!-- Step 3 -->
+<div id="step3" class="step">
+  <h2>Choose the material</h2>
+  <button class="btn" onclick="scrollToContact()">Metal-plastic</button>
+  <button class="btn" onclick="scrollToContact()">Wood</button>
+  <button class="btn" onclick="scrollToContact()">Aluminum</button>
+  <button class="btn" onclick="scrollToContact()">Consultation Required</button>
+  <button class="btn back-btn" onclick="goBack(2)">Back</button>
+</div>
+
+<script>
+  // Function to scroll to the Contact Us section
+  function scrollToContact() {
+      document.getElementById('contact').scrollIntoView({
+          behavior: 'smooth'
+      });
+  }
+  </script>
+
+<div id="video-gallery" class="video-section">
+  <h2>Video Gallery</h2>
+  <div class="video-wrapper">
+      <!-- Video 1 -->
+      <div class="video-item">
+          <video width="300" controls>
+              <source src="movies/movie1.mp4" type="video/mp4">
+              Your browser does not support HTML video.
+          </video>
+          <div class="video-description">
+              <p><strong>"SALAMANDER" - A peaceful mountain moment framed by rustic wood, where a vibrant fire salamander meets the silent beauty of the Carpathians—now with a symbol of unity fluttering in the breeze.</strong></p>
+          </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="video-item">
+          <video width="300" controls>
+              <source src="movies/movie2.mp4" type="video/mp4">
+              Your browser does not support HTML video.
+          </video>
+          <div class="video-description">
+              <p><strong>"SALAMANDER" - Elegant sliding wooden doors in action—where natural design meets smooth functionality.</strong></p>
+          </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="video-item">
+          <video width="300" controls>
+              <source src="movies/movie3.mp4" type="video/mp4">
+              Your browser does not support HTML video.
+          </video>
+          <div class="video-description">
+              <p><strong>"GEMINI" - Elegance in every grain—crafted wooden doors that blend tradition with modern design.</strong></p>
+          </div>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="video-item">
+          <video width="300" controls>
+              <source src="movies/movie4.mp4" type="video/mp4">
+              Your browser does not support HTML video.
+          </video>
+          <div class="video-description">
+              <p><strong>Reiners Aluminum - Panel Doors, with fingerprint scanner, MasterLine 8 system</strong></p>
+          </div>
+      </div>
+
+      <!-- Video 5 -->
+      <div class="video-item">
+        <video width="300" controls>
+            <source src="movies/movie5.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <div class="video-description">
+            <p><strong>"A showcase of diverse door styles—sliding, hinged, and modern wood designs—blending functionality with timeless craftsmanship."</strong></p>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="contact" class="form-container">
+  <h2>Contact Us</h2>
+  <form action="https://formspree.io/f/mldjgqpz" method="POST">
+      <label>Your name:</label>
+      <input type="text" name="name" required>
+      <label>Your phone:</label>
+      <input type="tel" name="phone" required>
+      <label>Your email:</label>
+      <input type="email" name="email" required>
+      <label>Your message:</label>
+      <textarea name="message" required></textarea>
+      <button type="submit" class="btn">Submit</button>
+      <input type="hidden" name="_language" value="en" />
+  </form>
+</div>
+
+
+<button id="blog-btn" class="blog-button">About Our Company</button>
+
+<div id="blog-popup" class="popup blog-exclusive-popup">
+  <div class="blog-popup-container">
+    <button class="blog-close-btn">&times;</button>
+    <h2>About Us</h2>
+    <p>Enterprise <strong>"Windows Technologies UA"</strong> is a modern, reputable company cooperating with <strong>EKRAN</strong>, one of Ukraine's largest producers of transparent structures.</p>
+    <p>We introduced Ukraine's first windows from the <strong>SALAMANDER</strong> profile in 1999, pioneering high-quality window solutions.</p>
+    <h3>Why Aluminium?</h3>
+    <ul class="advantages">
+      <li>🔁 <strong>Lifetime:</strong> Lasts decades without rusting.</li>
+      <li>🌀 <strong>Insulation:</strong> Keeps warmth efficiently.</li>
+      <li>👁️ <strong>Design:</strong> Sleek and modern.</li>
+      <li>🌍 <strong>Sustainability:</strong> Eco-friendly and recyclable.</li>
+      <li>🎨 <strong>Colours:</strong> Wide variety available.</li>
+      <li>🛡️ <strong>Safety:</strong> Impact and fire-resistant.</li>
+    </ul>
+    <p class="final-note">That's why we proudly recommend <strong>Reynaers Aluminium.</strong></p>
+  </div>
+</div>
+
+
+
+
+<script>
+    let currentStep = 1;
+    const selections = {};
+
+    // ✅ Function to move to the next step
+    function nextStep(step, choice) {
+        selections[`step${currentStep}`] = choice;
+
+        // Hide the current step and show the next one
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+        document.getElementById(`step${step}`).classList.add('active');
+
+        currentStep = step;
+    }
+
+    // 🔙 Function to go back to the previous step
+    function goBack(step) {
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+        document.getElementById(`step${step}`).classList.add('active');
+        currentStep = step;
+    }
+
+    function showForm(finalChoice) {
+    selections['finalChoice'] = finalChoice;
+
+    // Hide all steps and show the form
+    document.querySelector('.install-section').style.display = 'none';
+    document.getElementById('contact-form').style.display = 'block';
+
+    // Scroll to the Contact section with smooth scrolling
+    setTimeout(function () {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 500); // Adding delay to ensure form is fully rendered
+}
+    // 🔥 Smooth scrolling for navigation buttons
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 50,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ✅ Ensure the steps reset when navigating
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.classList.remove('active');
+            if (index === 0) {
+                step.classList.add('active');
+            }
+        });
+    });
+</script>
+<script>
+    // ✅ Function to open the pop-up
+    function openPopup() {
+        document.getElementById('blog-popup').style.display = 'block';
+    }
+
+    // ❌ Function to close the pop-up
+    function closePopup() {
+        document.getElementById('blog-popup').style.display = 'none';
+    }
+
+    // Close pop-up when clicking outside the content
+    window.onclick = function(event) {
+        const popup = document.getElementById('blog-popup');
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+    // Open popup logic
+    document.querySelectorAll('.open-popup').forEach(button => {
+        button.addEventListener('click', () => {
+            document.getElementById(button.dataset.popup).style.display = 'flex';
+        });
+    });
+
+    // Close popup logic
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            const popup = closeBtn.closest('.popup');
+            if (popup) popup.style.display = 'none';
+        });
+    });
+
+    // Close when clicking outside the popup content
+    window.addEventListener('click', (e) => {
+        document.querySelectorAll('.popup').forEach(popup => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<!-- JavaScript for popup functionality -->
+<script>
+    // Function to open the popup
+    document.querySelectorAll('.open-popup').forEach(button => {
+        button.addEventListener('click', () => {
+            const popupId = button.dataset.popup;
+            document.getElementById(popupId).style.display = 'flex';
+        });
+    });
+
+    // Function to close the popup
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
+
+    // Close popup when clicking outside the content
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('popup')) {
+            e.target.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleInput = document.getElementById('theme-toggle');
+      const body = document.body;
+  
+      // Load saved mode on refresh
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        toggleInput.checked = true;
+      }
+  
+      toggleInput.addEventListener('change', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    });
+  </script>
+  
+  
+  
+
+<footer class="footer">
+    <p>&copy; 2025 Windows Technologies UA. All rights reserved.</p>
+</footer>
+</body>
+</html>
