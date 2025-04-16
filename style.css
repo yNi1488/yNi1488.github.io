@@ -907,3 +907,24 @@ p {
 .blog-close-btn {
   color: var(--text-color);
 }
+
+.social-icons {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
